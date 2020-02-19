@@ -5,3 +5,5 @@ WORKDIR /code
 COPY requirements-local.txt /code/
 RUN pip install -r requirements-local.txt
 COPY . /code/
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
