@@ -122,3 +122,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Celery & broker
+CELERY_BROKER_URL = 'amqp://rabbitmq:rabbitmq@rabbitmq:5672'
+
+CELERY_TIMEZONE = 'Europe/Madrid'
+
+CELERY_BEAT_SCHEDULE = {
+    'check-task-runner-health': {
+        'task': 'health_check',
+        'schedule': 10.0,
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(os.path.dirname(__file__), 'logs/tasks.log'), 
+        },
+    },
+    'loggers': {
+        'info': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
+
