@@ -1,0 +1,38 @@
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-ABdnjefqVzESm+f9z9hcqx2cvwvDNjfrwfW5Le9138qHCMGlNmWawyn/tt4jR4ba" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">   
+</head>
+
+<h1 class="text-center">Mesas</h1>
+
+<table>
+  <thead><th class="col-lg-9">Nombre</th><th class="col-lg-1">Precio</th><th class="col-lg-2"></th></thead>
+{% for table in object_list %}
+<tr>
+  <td class="col-lg-9">{{ table.name }}</td>
+  <td class="col-lg-1">{{ table.price }} €</td>
+  <td class="col-lg-1"><a href="{{ table.url }}">Enlace</a></td>
+  <td class="col-lg-1">{{ table.brand }}</td>
+</tr>
+
+{% empty %}
+    <td>No articles yet.</td>
+{% endfor %}
+</table>
+
+<style>
+  table {
+      font-family: "IBM Plex",
+  }
+
+  table td {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 15px;
+  }
+
+  table tr {
+      border-bottom: 1px solid black;
+  }
+</style>
