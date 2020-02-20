@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'task_runner',
+    'tables',
 ]
 
 MIDDLEWARE = [
@@ -151,14 +152,13 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'scrapnik/logs/tasks.log'), 
-            'formatter': 'default',
         },
     },
     'loggers': {
         'file': {
             'handlers': ['file'],
             'level': 'INFO',
-            'propagate': False,
+            'formatter': 'default',
         },
     },
 }
