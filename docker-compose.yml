@@ -30,18 +30,32 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq
-    hostname: default-rabbit
+    hostname: rabbitmq
     env_file:
       - ./local.env      
     ports:
       - 5672:5672
       - 15672:15672
+    networks:
+      - network
+
+  celery:
+    build: .
+    command: celery -A scrapnik worker -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    networks:
+      - network
       
-    # Run this container on a private network for this application.
-    # This is necessary for magic Docker DNS to work: other containers
-    # also running on this network will see a host name "rabbitmq"
-    # (the name of this section) and the internal port 5672, even though
-    # that's not explicitly published above.
+  celery-beat:
+    build: .
+    command: celery -A scrapnik beat -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - db      
     networks:
       - network
         

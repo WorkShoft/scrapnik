@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'task_runner',
 ]
 
 MIDDLEWARE = [
@@ -124,13 +126,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Celery & broker
-CELERY_BROKER_URL = 'amqp://rabbitmq:rabbitmq@rabbitmq:5672'
+CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672'
 
 CELERY_TIMEZONE = 'Europe/Madrid'
 
 CELERY_BEAT_SCHEDULE = {
     'check-task-runner-health': {
-        'task': 'health_check',
+        'task': 'task_runner.tasks.health_check',
         'schedule': 10.0,
     }
 }
@@ -138,18 +140,25 @@ CELERY_BEAT_SCHEDULE = {
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '%(asctime)s%(process)d/%(thread)d%(name)s%(funcName)s %(lineno)s%(levelname)s%(message)s',
+            'datefmt': "%Y/%m/%d %H:%M:%S"
+        }
+    },
     'handlers': {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(os.path.dirname(__file__), 'logs/tasks.log'), 
+            'filename': os.path.join(BASE_DIR, 'scrapnik/logs/tasks.log'), 
+            'formatter': 'default',
         },
     },
     'loggers': {
-        'info': {
+        'file': {
             'handlers': ['file'],
             'level': 'INFO',
-            'propagate': True,
+            'propagate': False,
         },
     },
 }
