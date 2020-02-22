@@ -147,7 +147,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'default': {
-            'format': '%(asctime)s%(process)d/%(thread)d%(name)s%(funcName)s %(lineno)s%(levelname)s%(message)s',
+            'format': '%(asctime)s%(process)d/%(thread)d%(name)s%(funcName)s %(lineno)s %(levelname)s: %(message)s',
             'datefmt': "%Y/%m/%d %H:%M:%S"
         }
     },
@@ -155,14 +155,14 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'scrapnik/logs/tasks.log'), 
+            'filename': os.path.join(BASE_DIR, 'scrapnik/logs/tasks.log'),
+            'formatter': 'default',
         },
     },
     'loggers': {
         'file': {
             'handlers': ['file'],
             'level': 'INFO',
-            'formatter': 'default',
         },
     },
 }
