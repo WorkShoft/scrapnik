@@ -134,7 +134,11 @@ CELERY_TIMEZONE = 'Europe/Madrid'
 CELERY_BEAT_SCHEDULE = {
     'check-task-runner-health': {
         'task': 'task_runner.tasks.health_check',
-        'schedule': 10.0,
+        'schedule': 30.0,
+    },
+    'run-spiders': {
+        'task': 'task_runner.tasks.run_spiders',
+        'schedule': 60.0,
     }
 }
 
