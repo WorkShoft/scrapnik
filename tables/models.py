@@ -11,8 +11,7 @@ class TableBrand(models.Model):
     
 class Table(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=400)
-
+    name = models.CharField(max_length=400, unique=True)
     description = models.CharField(max_length=1000)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     url = models.CharField(max_length=2048, default='Unknown')

@@ -8,3 +8,5 @@ logger = logging.getLogger('file')
 @shared_task
 def health_check():    
     logger.info('Task Runner is healthy 🍎')
+
+
