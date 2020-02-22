@@ -1,6 +1,6 @@
 import logging
-#from scrapy_examples import spider_runner
 
+from django.core.management import call_command
 from celery import shared_task
 
 logger = logging.getLogger('file')
@@ -12,8 +12,13 @@ def health_check():
 
 
 @shared_task
-def run_spiders():
-    pass
-    #logger.info('Running spiders 🕸️️')
-    #spider_runner.run(spider='scrapy_examples/carrefour_spider.py', output_json='test_celery_spiders.json')
+def crawl():
+    """
+    Run crawl command defined in management/commands/crawl.py 
+    """
+    
+    logger.info('Spiders are crawling 🕸️️')
+    call_command('crawl')
+    logger.info('Spiders just finished crawling 🕸️️')
+    
 

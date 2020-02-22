@@ -137,7 +137,7 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 30.0,
     },
     'run-spiders': {
-        'task': 'task_runner.tasks.run_spiders',
+        'task': 'task_runner.tasks.crawl',
         'schedule': 60.0,
     }
 }
