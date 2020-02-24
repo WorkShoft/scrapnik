@@ -4,9 +4,6 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-from scraper.scraper.items import TableItem
-from tables.models import Table
-
 class ScraperPipeline(object):
     def process_item(self, item, spider):
         return item
@@ -16,3 +13,7 @@ class TablePipeline:
         row = item.save()
         return row
         
+class UserAgentsPipeline:
+    def process_item(self, item, spider):
+        row = item.save()
+        return row

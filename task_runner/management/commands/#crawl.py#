@@ -9,6 +9,6 @@ class Command(BaseCommand):
   def handle(self, *args, **options):
       process = CrawlerProcess(get_project_settings())
 
-      process.crawl(carrefour_spider)
+      process.crawl(carrefour_spider.CarrefourSpider)
       process.start()
 

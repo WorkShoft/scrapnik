@@ -1,9 +1,7 @@
 import scrapy
-import os
-
 from scrapy.http import Request
-from scraper.scraper.items import TableItem
 
+from scraper.scraper.items import TableItem
 from tables.models import TableBrand
 
 
