@@ -17,7 +17,7 @@ class Table(models.Model):
     description = models.CharField(max_length=1000)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     url = models.CharField(max_length=2048, default='Unknown')
-    created_date = models.DateField(default=timezone.now)
+    created_datetime = models.DateTimeField(default=timezone.now)
     brand = models.ForeignKey(TableBrand, on_delete=models.CASCADE)
 
     def __str__(self):

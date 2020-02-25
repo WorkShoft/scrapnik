@@ -7,8 +7,8 @@ from tables.models import TableBrand
 
 class CarrefourSpider(scrapy.Spider):
     name = 'carrefourspider'
-    start_urls = ['https://www.carrefour.es/mesas-mesa-de-estudio-oficina/N-10ftbh0Z1jvbjnb/c']
-    download_delay = 0.5
+    start_urls = ['https://www.carrefour.es/mesas/cat4215864/c']
+    download_delay = 0.3
     FEED_EXPORT_ENCODING = 'utf-8'
 
     custom_settings = {
@@ -65,4 +65,10 @@ class CarrefourSpider(scrapy.Spider):
         return just_text
 
     def str_to_float(self, text):
+        text = text.replace(',', '.')
+
+        if text.count('.') > 1:
+            index = text.find('.')
+            text = text[:index] + text[index + 1:]
+
         return float(text.replace(',', '.'))
