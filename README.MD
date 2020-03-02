@@ -6,6 +6,7 @@ Some of the interesting features are:
 - A custom Django command that runs a specific spider
 - A custom Django command that runs all spiders
 - Usage of Cloudflare-scrapy to scrape Cloudflare-protected sites
+- Usage of Scrapy-DjangoItem to create a pipeline that deserializes the Scrapy data to Django objects, validates them and saves them to the Django project's database
 
 This is the complete stack:
 
