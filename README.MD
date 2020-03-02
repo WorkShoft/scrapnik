@@ -1,6 +1,6 @@
 This project uses the Django web framework and the Scrapy framework to show how scraping can be automated by using periodic tasks with Celery tasks and workers, and how easy it is to integrate Scrapy in a Django project.
 
-The scraped sites are furniture catalogs of sites such as Carrefour's and Ikea's. This sites are interesting because they have pagination and complex elements.
+The scraped sites are furniture catalogs of sites such as Carrefour's and Ikea's. These sites are interesting because they have pagination and complex elements.
 
 Some of the interesting features are:
 - A custom Django command that runs a specific spider
