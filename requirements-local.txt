@@ -1,4 +1,4 @@
-scrapy==1.8.0
+scrapy==2.6.2
 scrapy-djangoitem==1.1.1
 Django==3.0.7
 psycopg2==2.8.4
